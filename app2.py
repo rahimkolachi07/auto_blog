@@ -2,6 +2,7 @@ from gemini.gemini import *
 import pandas as pd
 from app import *
 import os
+from image_gen import *
 
 def text_writer(title,subtit):
         time.sleep(60)
@@ -50,7 +51,9 @@ for i,cat in enumerate(cat1):
                 topic_name=topics["Title"][row_n]
                 subtopics=g_model(f"write 4 sub topics on main topic = {topic_name}. sub topic should be related with topic and must be technical. its technical subject. must be comma seperated. dont give numbering. just return topic names")
                 subtitles_list = subtopics.split(',')
+                image_gen("generate image with 4k quality. focused on the topic. catchy image on "+topic_name+" best impressive image on "+topic_name)
                 time.sleep(60)
+                #image_id=upload_image("image/feature_image.png")
                 top,subt,p1,p2,p3,p4,p5=text_writer(topics["Title"][row_n],subtitles_list)
                 top=noise(top)
                 p1=noise(p1)

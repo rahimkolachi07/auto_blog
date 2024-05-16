@@ -1,6 +1,7 @@
 from wordpress_xmlrpc import Client, WordPressPost
 from wordpress_xmlrpc.methods.posts import NewPost
 from gemini.gemini import *
+from image_upload import *
 
 # WordPress site URL and credentials
 wordpress_url = 'http://hecktobyte.pk/xmlrpc.php'
@@ -39,6 +40,8 @@ def blog_post(top,subt,p1,p2,p3,p4,p5):
 
     """
     post.post_status = 'publish'  # Cshange to 'draft' if you want to save as draft
+    #post.thumbnail = image_id
+
 
     # Publish the post
     post_id = client.call(NewPost(post))

@@ -1,6 +1,7 @@
 from gemini.gemini import *
 import pandas as pd
 from app import *
+from image_gen import *
 def subtopics():
     try:
         topics=pd.read_csv("ai_post.csv")
@@ -12,6 +13,7 @@ def subtopics():
                 subtopics=g_model(f"write 4 sub topics on main topic = {topic}. sub topic should be related with topic and must be technical. its technical subject. must be comma seperated. dont give numbering. just return topic names")
                 print(subtopics)
                 print("topic="+topic)
+                image_gen("generate image with 4k quality. focused on the topic="+topic)
                 subtitles_list = subtopics.split(',')
                 top,subt,p1,p2,p3,p4,p5=text_writer(topic,subtitles_list)
                 blog_post(top,subt,p1,p2,p3,p4,p5)
@@ -50,5 +52,3 @@ def text_writer(title,subtit):
         
         return title,subtit,subpra1,subpra2,subpra3,subpra4,subpra5
 
-
-subtopics()
